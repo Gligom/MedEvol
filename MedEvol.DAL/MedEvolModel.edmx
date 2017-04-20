@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testLaboratorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="usp_GetAnalizePacient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cnp" Type="char" Mode="In" />
+          <Parameter Name="analiza" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="testLaboratorModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testLaboratorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="testLaboratorEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="usp_GetAnalizePacient" ReturnType="Collection(testLaboratorModel.usp_GetAnalizePacient_Result)">
+            <Parameter Name="cnp" Mode="In" Type="String" />
+            <Parameter Name="analiza" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_GetAnalizePacient_Result">
+          <Property Type="DateTime" Name="setData" Nullable="false" Precision="16" />
+          <Property Type="String" Name="rezVal" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="valMinVal" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="valmaxVal" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testLaboratorModelStoreContainer" CdmEntityContainer="testLaboratorEntities" >
+          <FunctionImportMapping FunctionImportName="usp_GetAnalizePacient" FunctionName="testLaboratorModel.Store.usp_GetAnalizePacient">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="testLaboratorModel.usp_GetAnalizePacient_Result">
+                <ScalarProperty Name="setData" ColumnName="setData" />
+                <ScalarProperty Name="rezVal" ColumnName="rezVal" />
+                <ScalarProperty Name="valMinVal" ColumnName="valMinVal" />
+                <ScalarProperty Name="valmaxVal" ColumnName="valmaxVal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
