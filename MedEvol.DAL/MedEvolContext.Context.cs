@@ -15,10 +15,10 @@ namespace MedEvol.DAL
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class testLaboratorEntities : DbContext
+    public partial class testLaboratorEntities2 : DbContext
     {
-        public testLaboratorEntities()
-            : base("name=testLaboratorEntities")
+        public testLaboratorEntities2()
+            : base("name=testLaboratorEntities2")
         {
         }
     
@@ -28,7 +28,7 @@ namespace MedEvol.DAL
         }
     
     
-        public virtual ObjectResult<usp_GetAnalizePacient_Result> usp_GetAnalizePacient(string cnp, Nullable<int> analiza)
+        public virtual ObjectResult<usp_GetAnalizePacient_2_Result> usp_GetAnalizePacient_2(string cnp, Nullable<int> analiza)
         {
             var cnpParameter = cnp != null ?
                 new ObjectParameter("cnp", cnp) :
@@ -38,7 +38,7 @@ namespace MedEvol.DAL
                 new ObjectParameter("analiza", analiza) :
                 new ObjectParameter("analiza", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetAnalizePacient_Result>("usp_GetAnalizePacient", cnpParameter, analizaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetAnalizePacient_2_Result>("usp_GetAnalizePacient_2", cnpParameter, analizaParameter);
         }
     }
 }

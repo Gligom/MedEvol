@@ -11,11 +11,12 @@ namespace MedEvol.DAL
 {
     using System;
     
-    public partial class usp_GetAnalizePacient_Result
+    public partial class usp_GetAnalizePacient_2_Result
     {
         public System.DateTime setData { get; set; }
         public string rezVal { get; set; }
         public string valMinVal { get; set; }
         public string valmaxVal { get; set; }
+        public Nullable<decimal> valcalc { get; set; }
     }
 }
